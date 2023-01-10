@@ -8,6 +8,15 @@ var posY = 0;
 // the element to be dragged
 const drag = document.getElementById('draggable');
 
+// initializing data
+if (localStorage.length != 0) {
+    posX = localStorage.getItem('dragPosX');
+    posY = localStorage.getItem('dragPosY');
+
+    drag.style.left = localStorage.getItem('dragOffsetLeft');
+    drag.style.top = localStorage.getItem('dragOffsetTop');
+}
+
 // ----------END OF GLOBAL VARIABLES--------------
 
 
@@ -40,6 +49,13 @@ const mouseMoveHandler = (event) => {
     // set new mouse position
     posX = event.clientX;
     posY = event.clientY;
+
+    // saving data to local storage
+    localStorage.setItem('dragPosX', posX+'');
+    localStorage.setItem('dragPosY', posY+'');
+
+    localStorage.setItem('dragOffsetLeft', (drag.offsetLeft + changeX) + 'px');
+    localStorage.setItem('dragOffsetTop', (drag.offsetTop + changeY) + 'px');
 }
 
 // to handle mouse up event to abort dragging and remove event listeners attached to the document
