@@ -1,0 +1,9 @@
+
+#draggable {
+    position: absolute;
+
+    /* doesn't allow user to select text */
+    user-select: none;
+
+    
+}
