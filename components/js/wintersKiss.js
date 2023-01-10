@@ -65,5 +65,22 @@ const mouseUpHandler = () => {
     document.removeEventListener('mouseup', mouseUpHandler);
 }
 
+// to measure time
+function startTime() {
+    var date = new Date();
+
+    var hours = date.getHours();
+    var minute = date.getMinutes();
+
+    console.log('hehe')
+
+    setTimeout(startTime, 60000)
+    
+}
+
+// -------------END OF GLOBAL FUNCTIONS-----------------
+
 
 drag.addEventListener('mousedown', mouseDownHandler)
+
+startTime()
