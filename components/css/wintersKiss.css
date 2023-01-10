@@ -1,9 +1,17 @@
 
-#draggable {
+#clock {
     position: absolute;
 
     /* doesn't allow user to select text */
     user-select: none;
+}
 
+#hours {
+    /* forcing contents to display in a single line */
+    display: inline;
+}
 
+#minutes {
+    /* forcing contents to display in a single line */
+    display: inline;
 }
