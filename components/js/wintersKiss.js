@@ -60,6 +60,31 @@ const tens = {
     60: 'Sixty'
 }
 
+const monthInWords = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'August',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December',
+}
+
+const dayInWords = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+}
+
 // to store coordinates of draggable elements
 var clockPosX = 0;
 var clockPosY = 0;
@@ -70,6 +95,9 @@ const clock = document.getElementById('clock');
 // the clock elements
 const minutesDOM = document.getElementById('minutes');
 const hoursDOM = document.getElementById('hours');
+
+// the calender info element
+const calenderDOM = document.getElementById('calender-info');
 
 // initializing data
 if (localStorage.length != 0) {
@@ -167,10 +195,34 @@ function startTime() {
     
 }
 
+// to format calendar info
+const formatCalenderInfo = (day, date, month, year) => {
+
+    if (date < 10 ) {
+        date = '0'+date;
+    }
+
+    calenderDOM.innerText = date + ' : ' + dayInWords[day] + ' : ' + monthInWords[month] + ' ' + year;
+}
+
+// to measure calendar info such as date, day, month and year.
+const calenderInfo = () => {
+    var date = new Date();
+
+    var day = date.getDay();
+    var today = date.getDate();
+    var month = date.getMonth();
+    var year = date.getYear()%100;
+
+    formatCalenderInfo(day, today, month, year);
+}
+
 // -------------END OF GLOBAL FUNCTIONS-----------------
 
 
 // actual code
 clock.addEventListener('mousedown', mouseDownHandler)
+
+calenderInfo()
 
 startTime()
