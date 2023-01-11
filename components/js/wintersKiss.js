@@ -116,48 +116,61 @@ if (localStorage.length != 0) {
 
 // global functions
 
-// to handle mouse down event to trigger clockging
-const mouseDownHandler = (event) => {
+class Draggable {
 
-    // finding x and y coordinates of the mouse down event
-    clockPosX = event.clientX;
-    clockPosY = event.clientY;
+    constructor(posX, posY, element, elementName) {
+        this.posX = posX;
+        this.posY = posY;
 
-    // adding event to the document
-    // these event listeners will be removed at the mouse up event
-    document.addEventListener('mousemove',  mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-}
+        this.element = element;
+        this.elementName = elementName;
 
-// to handle dragging when mouse moves
-const mouseMoveHandler = (event) => {
+        element.addEventListener('mousedown', this.mouseDownHandler);
+    } 
 
-    // the distance mouse has been moved by
-    var changeX = event.clientX - clockPosX;
-    var changeY = event.clientY - clockPosY;
+    // to handle mouse down event to trigger clockging
+    mouseDownHandler = (event) => {
 
-    // new position of the element
-    clock.style.left = (clock.offsetLeft + changeX) + 'px';
-    clock.style.top = (clock.offsetTop + changeY) + 'px';
+        // finding x and y coordinates of the mouse down event
+        this.posX = event.clientX;
+        this.posY = event.clientY;
 
-    // set new mouse position
-    clockPosX = event.clientX;
-    clockPosY = event.clientY;
+        // adding event to the document
+        // these event listeners will be removed at the mouse up event
+        document.addEventListener('mousemove', this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
+    }
 
-    // saving data to local storage
-    localStorage.setItem('clockPosX', clockPosX+'');
-    localStorage.setItem('clockPosY', clockPosY+'');
+    // to handle dragging when mouse moves
+    mouseMoveHandler = (event) => {
 
-    localStorage.setItem('clockOffsetLeft', (clock.offsetLeft + changeX) + 'px');
-    localStorage.setItem('clockOffsetTop', (clock.offsetTop + changeY) + 'px');
-}
+        // the distance mouse has been moved by
+        var changeX = event.clientX - this.posX;
+        var changeY = event.clientY - this.posY;
 
-// to handle mouse up event to abort dragging and remove event listeners attached to the document
-const mouseUpHandler = () => {
+        // new position of the element
+        this.element.style.left = (this.element.offsetLeft + changeX) + 'px';
+        this.element.style.top = (this.element.offsetTop + changeY) + 'px';
 
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-}
+        // set new mouse position
+        this.posX = event.clientX;
+        this.posY = event.clientY;
+
+        // saving data to local storage
+        localStorage.setItem(this.elementName+'PosX', this.PosX+'');
+        localStorage.setItem(this.elementName+'PosY', this.posY+'');
+
+        localStorage.setItem(this.elementName+'OffsetLeft', (this.element.offsetLeft + changeX) + 'px');
+        localStorage.setItem(this.elementName+'OffsetTop', (this.element.offsetTop + changeY) + 'px');
+    }
+
+    // to handle mouse up event to abort dragging and remove event listeners attached to the document
+    mouseUpHandler = () => {
+
+        document.removeEventListener('mousemove', this.mouseMoveHandler);
+        document.removeEventListener('mouseup', this.mouseUpHandler);
+    }
+} 
 
 // to format time into words
 const formatTime = (hours, minutes) => {
@@ -229,7 +242,7 @@ const calenderInfo = () => {
 
 
 // actual code
-clock.addEventListener('mousedown', mouseDownHandler)
+const draggableClock = new Draggable(clockPosX, clockPosY, clock, 'clock');
 
 calenderInfo()
 
