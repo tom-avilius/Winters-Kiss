@@ -167,6 +167,14 @@ const formatTime = (hours, minutes) => {
 
     if(minutes < 20) {
         minute = ones[minutes];
+    } else if(minutes === 20) {
+        minute = tens[20];
+    } else if(minutes === 30) {
+        minute = tens[30];
+    } else if(minutes === 40) {
+        minute = tens[40];
+    } else if(minutes === 50) {
+        minute = tens[50]
     } else if(minutes >= 20 && minutes < 30) {
         minute = tens[20] + ' ' + ones[minutes-20];
     } else if(minutes >= 30 && minutes < 40) {
