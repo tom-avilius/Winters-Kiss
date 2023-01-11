@@ -6,9 +6,20 @@
     user-select: none;
 }
 
+#dock {
+    position: absolute;
+
+    /* doesn't allow user to select text */
+    user-select: none;
+}
+
 #hours {
     /* forcing contents to display in a single line */
     display: inline;
+}
+
+.hidden {
+    display: none;
 }
 
 .horizontal-line {

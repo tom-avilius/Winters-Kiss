@@ -1,4 +1,3 @@
-
 // global variables 
 
 // to store time in words
@@ -89,8 +88,12 @@ const dayInWords = {
 var clockPosX = 0;
 var clockPosY = 0;
 
+var dockPosX = 0;
+var dockPosY = 0;
+
 // the elements to be dragged
 const clock = document.getElementById('clock');
+const dock = document.getElementById('dock');
 
 // the clock elements
 const minutesDOM = document.getElementById('minutes');
@@ -104,11 +107,20 @@ if (localStorage.length != 0) {
     clockPosX = localStorage.getItem('clockPosX');
     clockPosY = localStorage.getItem('clockPosY');
 
+    dockPosX = localStorage.getItem('dockPosX');
+    dockPosY = localStorage.getItem('dockPosY');
+
     clock.style.left = localStorage.getItem('clockOffsetLeft');
     clock.style.top = localStorage.getItem('clockOffsetTop');
+
+    dock.style.left = localStorage.getItem('dockOffsetLeft');
+    dock.style.top = localStorage.getItem('dockOffsetTop');
 } else {
     clock.style.left = '200px';
     clock.style.top = '650px';
+
+    dock.style.left = '930px';
+    dock.style.top = '900px';
 }
  
 // ----------END OF GLOBAL VARIABLES--------------
@@ -243,6 +255,7 @@ const calenderInfo = () => {
 
 // actual code
 const draggableClock = new Draggable(clockPosX, clockPosY, clock, 'clock');
+const draggableDock = new Draggable(dockPosX, dockPosY, dock, 'dock');
 
 calenderInfo()
 
