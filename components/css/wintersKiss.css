@@ -11,6 +11,13 @@
     display: inline;
 }
 
+.horizontal-line {
+    height: 4px;
+    border-color: black;
+    border-radius: 500px;
+    background: black;
+}
+
 #minutes {
     /* forcing contents to display in a single line */
     display: inline;

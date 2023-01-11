@@ -60,11 +60,11 @@ const tens = {
     60: 'Sixty'
 }
 
-// to store coordinates of draggable element
+// to store coordinates of draggable elements
 var clockPosX = 0;
 var clockPosY = 0;
 
-// the element to be dragged
+// the elements to be dragged
 const clock = document.getElementById('clock');
 
 // the clock elements
@@ -131,7 +131,7 @@ const mouseUpHandler = () => {
     document.removeEventListener('mouseup', mouseUpHandler);
 }
 
-// to format time
+// to format time into words
 const formatTime = (hours, minutes) => {
     const hour = hoursInWords[hours];
 
@@ -149,6 +149,7 @@ const formatTime = (hours, minutes) => {
         minute = tens[50] + ' ' +ones[minutes-50];
     }
 
+    // updating dom elements with time
     hoursDOM.innerText = hour+': ';
     minutesDOM.innerText = minute+'';
 }
@@ -169,6 +170,7 @@ function startTime() {
 // -------------END OF GLOBAL FUNCTIONS-----------------
 
 
+// actual code
 clock.addEventListener('mousedown', mouseDownHandler)
 
 startTime()
