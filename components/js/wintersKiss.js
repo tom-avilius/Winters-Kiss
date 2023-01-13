@@ -250,12 +250,33 @@ const calenderInfo = () => {
     formatCalenderInfo(day, today, month, year);
 }
 
+
+// class to add behaviour to dock icons: namely- to issue commands to open them
+class dockApplication {
+    
+    constructor(elementId='', command='') {
+        document.getElementById(elementId+'').addEventListener('click', () => {
+            terminal.execute(command);
+        });
+    }
+}
+
 // -------------END OF GLOBAL FUNCTIONS-----------------
 
 
 // actual code
+
+// making elements draggable
 const draggableClock = new Draggable(clockPosX, clockPosY, clock, 'clock');
 const draggableDock = new Draggable(dockPosX, dockPosY, dock, 'dock');
+
+// adding behaviour to dock
+const blender = new dockApplication('blender-icon', 'blender');
+const vlc = new dockApplication('vlc-icon', 'vlc');
+const vscode = new dockApplication('vscode-icon', 'code');
+const settings = new dockApplication('settings-icon', 'gnome-control-center');
+const chrome = new dockApplication('chrome-icon', 'google-chrome');
+const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws error if console is used 
 
 calenderInfo()
 
