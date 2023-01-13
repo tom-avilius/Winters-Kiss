@@ -13,6 +13,16 @@
     user-select: none;
 }
 
+.dock-img {
+    /* foricing the contents to display in a single line */
+    display: inline;
+    /* removing background */
+    background: transparent;
+
+    padding: 25px;
+    height: 40px;
+}
+
 #hours {
     /* forcing contents to display in a single line */
     display: inline;
