@@ -272,7 +272,7 @@ const draggableDock = new Draggable(dockPosX, dockPosY, dock, 'dock');
 
 // adding behaviour to dock
 const blender = new dockApplication('blender-icon', 'blender');
-const vlc = new dockApplication('vlc-icon', 'vlc');
+const files = new dockApplication('files-icon', 'nautilus');
 const vscode = new dockApplication('vscode-icon', 'code');
 const settings = new dockApplication('settings-icon', 'gnome-control-center');
 const chrome = new dockApplication('chrome-icon', 'google-chrome');
