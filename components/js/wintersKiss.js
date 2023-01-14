@@ -91,9 +91,17 @@ var clockPosY = 0;
 var dockPosX = 0;
 var dockPosY = 0;
 
+var memoryPosX = 0;
+var memoryPosY = 0;
+
+var cpuPosX = 0;
+var cpuPosY = 0;
+
 // the elements to be dragged
 const clock = document.getElementById('clock');
 const dock = document.getElementById('dock');
+const memoryStat = document.getElementById('memory-stat');
+const cpuStat = document.getElementById('cpu-stat');
 
 // the clock elements
 const minutesDOM = document.getElementById('minutes');
@@ -110,11 +118,24 @@ if (localStorage.length != 0) {
     dockPosX = localStorage.getItem('dockPosX');
     dockPosY = localStorage.getItem('dockPosY');
 
+    memoryPosX = localStorage.getItem('memoryPosX');
+    memoryPosY = localStorage.getItem('memoryPosY');
+
+    cpuPosX = localStorage.getItem('cpuPosX');
+    cpuPosY = localStorage.getItem('cpuPosY');
+
     clock.style.left = localStorage.getItem('clockOffsetLeft');
     clock.style.top = localStorage.getItem('clockOffsetTop');
 
     dock.style.left = localStorage.getItem('dockOffsetLeft');
     dock.style.top = localStorage.getItem('dockOffsetTop');
+
+    memoryStat.style.left = localStorage.getItem('memoryOffsetLeft');
+    memoryStat.style.top = localStorage.getItem('memoryOffsetTop');
+
+    cpuStat.style.top = localStorage.getItem('cpuOffsetTop');
+    cpuStat.style.left = localStorage.getItem('cpuOffsetLeft')
+    
 } else {
     clock.style.left = '200px';
     clock.style.top = '650px';
@@ -261,6 +282,36 @@ class dockApplication {
     }
 }
 
+
+// class to add behaviour to computer statistics
+class statistics {
+    
+    constructor (type = '', elementId = '', factor = 100) {
+        this.type = type;
+        this.elementId = elementId;
+        this.factor = factor;
+
+        if(this.type === 'cpu') {
+            this.cpuUsage();
+        } else {
+            this.memoryUse();
+        }
+    }
+
+    cpuUsage = () => {
+        os.cpu((usage) => {
+            document.getElementById(this.elementId+'').style.width = (usage*this.factor)+'px';
+        })
+
+        setTimeout(this.cpuUsage, 1000);
+    }
+
+    memoryUse = () => {
+        document.getElementById(this.elementId+'').style.width = (100 - (os.memory()*this.factor) )+ 'px';
+        setTimeout(this.memoryUse, 1000)
+    }
+}
+
 // -------------END OF GLOBAL FUNCTIONS-----------------
 
 
@@ -269,6 +320,8 @@ class dockApplication {
 // making elements draggable
 const draggableClock = new Draggable(clockPosX, clockPosY, clock, 'clock');
 const draggableDock = new Draggable(dockPosX, dockPosY, dock, 'dock');
+const draggableCpu = new Draggable(cpuPosX, cpuPosY, cpuStat, 'cpu');
+const draggableMemory = new Draggable(memoryPosX, memoryPosY, memoryStat, 'memory')
 
 // adding behaviour to dock
 const blender = new dockApplication('blender-icon', 'blender');
@@ -277,6 +330,10 @@ const vscode = new dockApplication('vscode-icon', 'code');
 const settings = new dockApplication('settings-icon', 'gnome-control-center');
 const chrome = new dockApplication('chrome-icon', 'google-chrome');
 const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws error if console is used 
+
+// adding behaviour to computer statistics
+const memory = new statistics('memory', 'memory-line', 100);
+const cpu = new statistics('cpu', 'cpu-line', 100);
 
 calenderInfo()
 

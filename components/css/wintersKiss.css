@@ -6,6 +6,13 @@
     user-select: none;
 }
 
+#cpu-stat {
+    position: absolute;
+
+    /* doesn't allow user to select text */
+    user-select: none;
+}
+
 #dock {
     position: absolute;
 
@@ -49,6 +56,13 @@
     border-color: black;
     border-radius: 500px;
     background: black;
+}
+
+#memory-stat {
+    position: absolute;
+
+    /* doesn't allow user to select text */
+    user-select: none;
 }
 
 #minutes {
