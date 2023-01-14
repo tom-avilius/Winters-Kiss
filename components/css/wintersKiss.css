@@ -32,6 +32,7 @@
 
 .dock-img:hover {
     cursor: pointer;
+    opacity: 50%;
 }
 
 #hours {
