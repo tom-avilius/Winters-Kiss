@@ -332,8 +332,8 @@ const chrome = new dockApplication('chrome-icon', 'google-chrome');
 const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws error if console is used 
 
 // adding behaviour to computer statistics
-const memory = new statistics('memory', 'memory-line', 100);
-const cpu = new statistics('cpu', 'cpu-line', 100);
+const memory = new statistics('memory', 'memory-line', 75);
+const cpu = new statistics('cpu', 'cpu-line', 75);
 
 calenderInfo()
 

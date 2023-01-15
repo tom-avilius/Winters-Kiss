@@ -11,6 +11,25 @@
 
     /* doesn't allow user to select text */
     user-select: none;
+
+    width: 150px;
+    height: 40px;
+    
+    border-radius: 8px;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#cpu-line {
+    margin-left: 0;
+    margin-top: 18px;
+
+    background-image: radial-gradient( circle 1158px at 6.4% 48.8%,  rgba(195,241,245,1) 0%, rgba(255,255,255,1) 90.2% );
+    height: 5px;
+
+    border-width: 0;
+
+    box-shadow: 0px 0px 6px 2px rgba(114, 228, 241, 0.566);
 }
 
 #dock {
@@ -31,10 +50,8 @@
 
     /* preventing the user from selecting the image */
     user-select: none;
-    -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
 }
 
 .dock-img:hover {
@@ -63,9 +80,28 @@
 
     /* doesn't allow user to select text */
     user-select: none;
+
+    width: 150px;
+    height: 40px;
+    
+    border-radius: 8px;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 #minutes {
     /* forcing contents to display in a single line */
     display: inline;
+}
+
+#memory-line{
+    margin-left: 0;
+    margin-top: 18px;
+
+    background-image: radial-gradient( circle 1158px at 6.4% 48.8%,  rgba(195,241,245,1) 0%, rgba(255,255,255,1) 90.2% );
+    height: 5px;
+
+    border-width: 0;
+
+    box-shadow: 0px 0px 6px 2px rgba(114, 228, 241, 0.566);
 }
