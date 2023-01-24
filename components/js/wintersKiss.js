@@ -312,6 +312,27 @@ class statistics {
     }
 }
 
+
+// class to add behaviour to menus
+class Menu {
+
+    constructor(targetElementId='', menuId='') {
+         
+        this.targetElementId = targetElementId;
+        this.menuName = menuId+'Menu';
+        this.menuId = menuId;
+    }
+
+    createMenu() {
+
+        console.log(this.targetElementId)
+        document.getElementById(this.targetElementId).addEventListener('contextmenu', (event) => {
+            event.preventDefault()
+            window.alert('lol');
+        })
+    }
+}
+
 // -------------END OF GLOBAL FUNCTIONS-----------------
 
 
@@ -334,6 +355,10 @@ const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws e
 // adding behaviour to computer statistics
 const memory = new statistics('memory', 'memory-line', 75);
 const cpu = new statistics('cpu', 'cpu-line', 75);
+
+
+const menu = new Menu('memory-stat', 'memory-stat-menu');
+menu.createMenu();
 
 calenderInfo()
 
