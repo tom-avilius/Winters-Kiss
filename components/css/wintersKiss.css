@@ -108,17 +108,24 @@
 
 #memory-stat-menu {
     position: absolute;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    background-color: white;
 }
 
 .menu-list {
 
     margin: 0;
-    padding-left: 0;
+    padding: 10px;
     list-style-type: none;
 }
 
 .menu-button {
+    background-color: white;
+    font-size: 16px;
     border: 0;
-    padding: 0;
+    padding: 5px;
+}
+
+.menu-button:hover{
+    cursor: pointer;
+    opacity: 75%;
 }

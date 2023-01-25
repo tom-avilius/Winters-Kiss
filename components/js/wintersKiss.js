@@ -374,6 +374,9 @@ const cpu = new statistics('cpu', 'cpu-line', 75);
 
 const menu = new Menu('memory-stat', 'memory-stat-menu');
 menu.createMenu();
+document.getElementById('memory-remove').addEventListener('click', () => {
+    document.getElementById('memory-stat').classList.add('hidden');
+});
 
 calenderInfo()
 
