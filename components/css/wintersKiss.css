@@ -109,3 +109,8 @@
 #memory-stat-menu {
     position: absolute;
 }
+
+.menu-list {
+
+    list-style-type: none;
+}
