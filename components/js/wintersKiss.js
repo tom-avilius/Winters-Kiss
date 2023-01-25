@@ -328,7 +328,22 @@ class Menu {
         console.log(this.targetElementId)
         document.getElementById(this.targetElementId).addEventListener('contextmenu', (event) => {
             event.preventDefault()
-            window.alert('lol');
+            this.showMenu(event.clientX, event.clientY);
+            this.menuHandler();
+        })
+    }
+
+    showMenu(posX=0, posY=0) {
+
+        document.getElementById(this.menuId).classList.remove('hidden');
+        document.getElementById(this.menuId).style.top = posY+'px';
+        document.getElementById(this.menuId).style.left = posX+'px';
+    }
+
+    menuHandler() {
+
+        document.addEventListener('click', () => {
+            document.getElementById(this.menuId).classList.add('hidden');
         })
     }
 }
