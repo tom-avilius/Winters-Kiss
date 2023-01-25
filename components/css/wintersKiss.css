@@ -108,7 +108,6 @@
 
 #memory-stat-menu {
     position: absolute;
-
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
@@ -117,4 +116,9 @@
     margin: 0;
     padding-left: 0;
     list-style-type: none;
+}
+
+.menu-button {
+    border: 0;
+    padding: 0;
 }
