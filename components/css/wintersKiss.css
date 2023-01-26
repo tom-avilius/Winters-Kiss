@@ -75,9 +75,9 @@
 
 .horizontal-line {
     height: 4px;
-    border-color: white;
+    border-color: black;
     border-radius: 500px;
-    background: white;
+    background: black;
 }
 
 #memory-stat {
