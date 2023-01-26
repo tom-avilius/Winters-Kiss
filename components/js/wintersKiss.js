@@ -379,7 +379,7 @@ class Menu {
         document.addEventListener('contextmenu', (event) => {
 
             checkMenu()
-            
+
             if(showDocumentMenu.includes('false')) {
 
             } else {
@@ -419,6 +419,7 @@ const memory = new statistics('memory', 'memory-line', 75);
 const cpu = new statistics('cpu', 'cpu-line', 75);
 
 
+// adding behaviour to memory stat menu
 const Memorymenu = new Menu('memory-stat', 'memory-stat-menu');
 Memorymenu.createMenu();
 document.getElementById('memory-remove').addEventListener('click', () => {
@@ -427,6 +428,7 @@ document.getElementById('memory-remove').addEventListener('click', () => {
     localStorage.setItem('memory', 'false')
 });
 
+// adding behaviour to cpu stat menu
 const cpuMenu = new Menu('cpu-stat', 'cpu-stat-menu');
 cpuMenu.createMenu();
 document.getElementById('cpu-remove').addEventListener('click', () => {
@@ -435,6 +437,7 @@ document.getElementById('cpu-remove').addEventListener('click', () => {
     localStorage.setItem('cpu', 'false');
 })
 
+// adding behaviour to document menu
 const documentMenu = new Menu('document', 'document-menu');
 documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu']);
 document.getElementById('show-removed').addEventListener('click', () => {
