@@ -354,6 +354,22 @@ class Menu {
             document.getElementById(this.menuId).classList.add('hidden');
         })
     }
+
+    documentMenu(check=['']) {
+
+        document.addEventListener('contextmenu', (event) => {
+            console.log('lol')
+            check.forEach((value) => {
+                console.log('yay')
+                if (document.getElementById(value).classList.contains('hidden')) {
+                    event.preventDefault();
+
+                    this.showMenu(event.clientX, event.clientY);
+                    this.menuHandler();
+                }
+            })
+        })
+    }
 }
 
 // -------------END OF GLOBAL FUNCTIONS-----------------
@@ -387,6 +403,14 @@ document.getElementById('memory-remove').addEventListener('click', () => {
 
     localStorage.setItem('memory', 'false')
 });
+
+const documentMenu = new Menu('document', 'document-menu');
+documentMenu.documentMenu(['memory-stat-menu']);
+document.getElementById('show-removed').addEventListener('click', () => {
+    localStorage.setItem('memory', 'true');
+    document.getElementById('memory-stat').classList.remove('hidden');
+    
+})
 
 calenderInfo()
 

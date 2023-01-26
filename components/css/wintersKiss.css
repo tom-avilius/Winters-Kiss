@@ -59,6 +59,11 @@
     opacity: 50%;
 }
 
+#document-menu{
+    position: absolute;
+    background-color: white;
+}
+
 #hours {
     /* forcing contents to display in a single line */
     display: inline;
