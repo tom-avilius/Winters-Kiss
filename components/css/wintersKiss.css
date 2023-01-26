@@ -94,6 +94,11 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
+.menu {
+    position: absolute;
+    background-color: white;
+}
+
 #minutes {
     /* forcing contents to display in a single line */
     display: inline;
@@ -109,11 +114,6 @@
     border-width: 0;
 
     box-shadow: 0px 0px 6px 2px rgba(114, 228, 241, 0.566);
-}
-
-#memory-stat-menu {
-    position: absolute;
-    background-color: white;
 }
 
 .menu-list {
@@ -133,9 +133,4 @@
 .menu-button:hover{
     cursor: pointer;
     opacity: 75%;
-}
-
-#cpu-stat-menu {
-    position: absolute;
-    background-color: white;
 }
