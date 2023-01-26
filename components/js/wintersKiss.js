@@ -84,6 +84,9 @@ const dayInWords = {
     6: 'Saturday'
 }
 
+// to store element states => visible or hidden as true and false
+var memoryShow = true;
+
 // to store coordinates of draggable elements
 var clockPosX = 0;
 var clockPosY = 0;
@@ -123,6 +126,11 @@ if (localStorage.length != 0) {
 
     cpuPosX = localStorage.getItem('cpuPosX');
     cpuPosY = localStorage.getItem('cpuPosY');
+
+    memoryShow = localStorage.getItem('memory');
+    if(memoryShow == 'false') {
+        document.getElementById('memory-stat').classList.add('hidden')
+    }
 
     clock.style.left = localStorage.getItem('clockOffsetLeft');
     clock.style.top = localStorage.getItem('clockOffsetTop');
@@ -376,6 +384,8 @@ const menu = new Menu('memory-stat', 'memory-stat-menu');
 menu.createMenu();
 document.getElementById('memory-remove').addEventListener('click', () => {
     document.getElementById('memory-stat').classList.add('hidden');
+
+    localStorage.setItem('memory', 'false')
 });
 
 calenderInfo()
