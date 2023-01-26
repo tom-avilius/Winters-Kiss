@@ -86,6 +86,7 @@ const dayInWords = {
 
 // to store element states => visible or hidden as true and false
 var memoryShow = true;
+var cpuShow = true;
 
 // to store coordinates of draggable elements
 var clockPosX = 0;
@@ -130,6 +131,11 @@ if (localStorage.length != 0) {
     memoryShow = localStorage.getItem('memory');
     if(memoryShow == 'false') {
         document.getElementById('memory-stat').classList.add('hidden')
+    }
+
+    cpuShow = localStorage.getItem('cpu');
+    if(cpuShow == 'false') {
+        document.getElementById('cpu-stat').classList.add('hidden');
     }
 
     clock.style.left = localStorage.getItem('clockOffsetLeft');
@@ -357,17 +363,34 @@ class Menu {
 
     documentMenu(check=['']) {
 
-        document.addEventListener('contextmenu', (event) => {
-            console.log('lol')
-            check.forEach((value) => {
-                console.log('yay')
-                if (document.getElementById(value).classList.contains('hidden')) {
-                    event.preventDefault();
+        var showDocumentMenu = [];
 
-                    this.showMenu(event.clientX, event.clientY);
-                    this.menuHandler();
+        function checkMenu() {
+
+            check.forEach((value) => {
+                if (document.getElementById(value).classList.contains('hidden')) {
+                    showDocumentMenu = [...showDocumentMenu, 'true']
+                } else {
+                    showDocumentMenu = [...showDocumentMenu, 'false']
                 }
             })
+        }
+
+        document.addEventListener('contextmenu', (event) => {
+
+            checkMenu()
+            
+            if(showDocumentMenu.includes('false')) {
+
+            } else {
+
+                event.preventDefault();
+
+                this.showMenu(event.clientX, event.clientY);
+                this.menuHandler();
+
+            }
+            showDocumentMenu = []
         })
     }
 }
@@ -396,19 +419,29 @@ const memory = new statistics('memory', 'memory-line', 75);
 const cpu = new statistics('cpu', 'cpu-line', 75);
 
 
-const menu = new Menu('memory-stat', 'memory-stat-menu');
-menu.createMenu();
+const Memorymenu = new Menu('memory-stat', 'memory-stat-menu');
+Memorymenu.createMenu();
 document.getElementById('memory-remove').addEventListener('click', () => {
     document.getElementById('memory-stat').classList.add('hidden');
 
     localStorage.setItem('memory', 'false')
 });
 
+const cpuMenu = new Menu('cpu-stat', 'cpu-stat-menu');
+cpuMenu.createMenu();
+document.getElementById('cpu-remove').addEventListener('click', () => {
+    document.getElementById('cpu-stat').classList.add('hidden');
+
+    localStorage.setItem('cpu', 'false');
+})
+
 const documentMenu = new Menu('document', 'document-menu');
-documentMenu.documentMenu(['memory-stat-menu']);
+documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu']);
 document.getElementById('show-removed').addEventListener('click', () => {
     localStorage.setItem('memory', 'true');
+    localStorage.setItem('cpu', 'true')
     document.getElementById('memory-stat').classList.remove('hidden');
+    document.getElementById('cpu-stat').classList.remove('hidden');
     
 })
 
