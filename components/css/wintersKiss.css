@@ -1,9 +1,30 @@
+@font-face {
+    font-family: "Explora";
+    src: url("./Explora-Regular.ttf")
+}
+
+.clock {
+
+    font-family: "Explora";
+    font-size: 4rem;
+    margin: 0;
+}
 
 #clock {
+    
+    color: white;
     position: absolute;
 
     /* doesn't allow user to select text */
     user-select: none;
+}
+
+#clock-line {
+
+    color: white;
+    border: white;
+    background-color: whitesmoke;
+    margin: 0;
 }
 
 #cpu-stat {
@@ -67,6 +88,7 @@
 #hours {
     /* forcing contents to display in a single line */
     display: inline;
+    margin: 0;
 }
 
 .hidden {
@@ -102,6 +124,7 @@
 #minutes {
     /* forcing contents to display in a single line */
     display: inline;
+    margin: 0;
 }
 
 #memory-line{
