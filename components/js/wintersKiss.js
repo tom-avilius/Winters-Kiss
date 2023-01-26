@@ -88,6 +88,7 @@ const dayInWords = {
 var memoryShow = true;
 var cpuShow = true;
 var dockShow = true;
+var clockShow = true;
 
 // to store coordinates of draggable elements
 var clockPosX = 0;
@@ -141,7 +142,12 @@ if (localStorage.length != 0) {
 
     dockShow = localStorage.getItem('dock');
     if(dockShow == 'false') {
-        document.getElementById('dock').classList.add('remove');
+        document.getElementById('dock').classList.add('hidden');
+    }
+
+    clockShow = localStorage.getItem('clock');
+    if(clockShow == 'false') {
+        document.getElementById('clock').classList.add('hidden')
     }
 
     clock.style.left = localStorage.getItem('clockOffsetLeft');
@@ -451,17 +457,27 @@ document.getElementById('dock-remove').addEventListener('click', () => {
     localStorage.setItem('dock', 'false');
 })
 
+// adding behaviour to clock menu
+const clockMenu = new Menu('clock', 'clock-menu');
+clockMenu.createMenu();
+document.getElementById('clock-remove').addEventListener('click', () => {
+    document.getElementById('clock').classList.add('hidden');
+
+    localStorage.setItem('clock', 'false');
+})
+
 // adding behaviour to document menu
 const documentMenu = new Menu('document', 'document-menu');
-documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu', 'dock-menu']);
+documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu', 'dock-menu', 'clock-menu']);
 document.getElementById('show-removed').addEventListener('click', () => {
     localStorage.setItem('memory', 'true');
     localStorage.setItem('cpu', 'true');
     localStorage.setItem('dock', 'true');
+    localStorage.setItem('clock', 'true');
     document.getElementById('memory-stat').classList.remove('hidden');
     document.getElementById('cpu-stat').classList.remove('hidden');
     document.getElementById('dock').classList.remove('hidden');
-    
+    document.getElementById('clock').classList.remove('hidden');
 })
 
 calenderInfo()
