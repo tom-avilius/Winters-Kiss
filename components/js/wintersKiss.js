@@ -87,6 +87,7 @@ const dayInWords = {
 // to store element states => visible or hidden as true and false
 var memoryShow = true;
 var cpuShow = true;
+var dockShow = true;
 
 // to store coordinates of draggable elements
 var clockPosX = 0;
@@ -136,6 +137,11 @@ if (localStorage.length != 0) {
     cpuShow = localStorage.getItem('cpu');
     if(cpuShow == 'false') {
         document.getElementById('cpu-stat').classList.add('hidden');
+    }
+
+    dockShow = localStorage.getItem('dock');
+    if(dockShow == 'false') {
+        document.getElementById('dock').classList.add('remove');
     }
 
     clock.style.left = localStorage.getItem('clockOffsetLeft');
@@ -339,7 +345,6 @@ class Menu {
 
     createMenu() {
 
-        console.log(this.targetElementId)
         document.getElementById(this.targetElementId).addEventListener('contextmenu', (event) => {
             event.preventDefault()
             this.showMenu(event.clientX, event.clientY);
@@ -437,14 +442,25 @@ document.getElementById('cpu-remove').addEventListener('click', () => {
     localStorage.setItem('cpu', 'false');
 })
 
+// adding behaviour to dock menu
+const dockMenu = new Menu('dock', 'dock-menu');
+dockMenu.createMenu();
+document.getElementById('dock-remove').addEventListener('click', () => {
+    document.getElementById('dock').classList.add('hidden');
+
+    localStorage.setItem('dock', 'false');
+})
+
 // adding behaviour to document menu
 const documentMenu = new Menu('document', 'document-menu');
-documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu']);
+documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu', 'dock-menu']);
 document.getElementById('show-removed').addEventListener('click', () => {
     localStorage.setItem('memory', 'true');
-    localStorage.setItem('cpu', 'true')
+    localStorage.setItem('cpu', 'true');
+    localStorage.setItem('dock', 'true');
     document.getElementById('memory-stat').classList.remove('hidden');
     document.getElementById('cpu-stat').classList.remove('hidden');
+    document.getElementById('dock').classList.remove('hidden');
     
 })
 
