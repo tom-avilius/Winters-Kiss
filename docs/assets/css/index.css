@@ -11,14 +11,45 @@ body {
     height: 100vh;
 }
 
+span li a {
+
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    display: inline;
+}
+
 nav ul li a {
 
     color: white;
     text-decoration: none;
 }
 
+nav ul li {
+
+    display: inline;
+}
+
 .background {
 
     background-color: rgba(0, 0, 0, 0.3);
     height: 100vh;
+}
+
+.navbar-div {
+
+    padding-top: 1.5%;
+    padding-bottom: 1%;
+}
+
+.nav-list {
+
+    display: inline;
+    text-align: right;
+}
+
+.nav-title {
+
+    display: inline;
+    text-align: left;
 }
