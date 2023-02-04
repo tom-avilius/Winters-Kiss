@@ -11,9 +11,14 @@ body {
     height: 100vh;
 }
 
+nav ul li a {
+
+    color: white;
+    text-decoration: none;
+}
+
 .background {
 
-    background-color: black;
-    opacity: 30%;
+    background-color: rgba(0, 0, 0, 0.3);
     height: 100vh;
 }
