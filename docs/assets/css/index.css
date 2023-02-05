@@ -45,11 +45,11 @@ nav ul li {
 .nav-list {
 
     display: inline;
-    text-align: right;
+    float: right;
 }
 
 .nav-title {
 
     display: inline;
-    text-align: left;
+    float: left;
 }
