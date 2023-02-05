@@ -31,6 +31,12 @@ nav ul li {
     display: inline;
 }
 
+ol li {
+
+    list-style-type: none;
+    padding-bottom: 1%;
+}
+
 #about-div div p {
 
     padding-top: 1%;
@@ -53,6 +59,11 @@ nav ul li {
 
     margin-top: 4%;
     margin-bottom: 3%;
+}
+
+#docs-div h1 {
+
+    padding-bottom: 2%;
 }
 
 .inline {
