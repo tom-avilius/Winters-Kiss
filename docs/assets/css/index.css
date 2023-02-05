@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 body {
@@ -34,6 +35,11 @@ nav ul li {
 
     background-color: rgba(0, 0, 0, 0.3);
     height: 100vh;
+}
+
+.inline {
+
+    display: inline;
 }
 
 .navbar-div {
