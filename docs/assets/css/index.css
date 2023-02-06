@@ -14,7 +14,7 @@ body {
 
 span a {
 
-    color: white;
+    color: palevioletred;
     text-decoration: none;
     text-align: left;
     display: inline;
@@ -64,6 +64,11 @@ ol li {
     font-size: 1.2rem;
 }
 
+.color {
+
+    color: palevioletred;
+}
+
 .content {
 
     padding-top: 10%;
@@ -77,11 +82,11 @@ ol li {
 
     font-family: 'Montserrat', sans-serif;
 
-    background-color: white;
+    background-color: palevioletred;
     border: 0 solid #e2e8f0;
     border-radius: 1.5rem;
     box-sizing: border-box;
-    color: #0d172a;
+    color: white;
     cursor: pointer;
     display: inline-block;
     font-size: 1.2rem;
@@ -98,8 +103,8 @@ ol li {
 
 .download-btn:hover {
 
-    background-color: palevioletred;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 #docs-div h1 {
@@ -107,6 +112,7 @@ ol li {
     padding-bottom: 2%;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+    color: palevioletred;
 }
 
 .inline {
