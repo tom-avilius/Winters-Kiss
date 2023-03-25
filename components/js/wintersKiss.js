@@ -1,5 +1,7 @@
 // global variables 
 
+const platform = os.platform();
+
 // to store time in words
 const hoursInWords = {
     0: 'ZERO',
@@ -90,19 +92,6 @@ var cpuShow = true;
 var dockShow = true;
 var clockShow = true;
 
-// to store coordinates of draggable elements
-var clockPosX = 0;
-var clockPosY = 0;
-
-var dockPosX = 0;
-var dockPosY = 0;
-
-var memoryPosX = 0;
-var memoryPosY = 0;
-
-var cpuPosX = 0;
-var cpuPosY = 0;
-
 // the elements to be dragged
 const clock = document.getElementById('clock');
 const dock = document.getElementById('dock');
@@ -117,119 +106,34 @@ const hoursDOM = document.getElementById('hours');
 const calenderDOM = document.getElementById('calender-info');
 
 // initializing data
-if (localStorage.length != 0) {
-    clockPosX = localStorage.getItem('clockPosX');
-    clockPosY = localStorage.getItem('clockPosY');
+if (disk.length != 0) {
 
-    dockPosX = localStorage.getItem('dockPosX');
-    dockPosY = localStorage.getItem('dockPosY');
-
-    memoryPosX = localStorage.getItem('memoryPosX');
-    memoryPosY = localStorage.getItem('memoryPosY');
-
-    cpuPosX = localStorage.getItem('cpuPosX');
-    cpuPosY = localStorage.getItem('cpuPosY');
-
-    memoryShow = localStorage.getItem('memory');
+    memoryShow = disk.get('memory');
     if(memoryShow == 'false') {
         document.getElementById('memory-stat').classList.add('hidden')
     }
 
-    cpuShow = localStorage.getItem('cpu');
+    cpuShow = disk.get('cpu');
     if(cpuShow == 'false') {
         document.getElementById('cpu-stat').classList.add('hidden');
     }
 
-    dockShow = localStorage.getItem('dock');
+    dockShow = disk.get('dock');
     if(dockShow == 'false') {
         document.getElementById('dock').classList.add('hidden');
     }
 
-    clockShow = localStorage.getItem('clock');
+    clockShow = disk.get('clock');
     if(clockShow == 'false') {
         document.getElementById('clock').classList.add('hidden')
     }
-
-    clock.style.left = localStorage.getItem('clockOffsetLeft');
-    clock.style.top = localStorage.getItem('clockOffsetTop');
-
-    dock.style.left = localStorage.getItem('dockOffsetLeft');
-    dock.style.top = localStorage.getItem('dockOffsetTop');
-
-    memoryStat.style.left = localStorage.getItem('memoryOffsetLeft');
-    memoryStat.style.top = localStorage.getItem('memoryOffsetTop');
-
-    cpuStat.style.top = localStorage.getItem('cpuOffsetTop');
-    cpuStat.style.left = localStorage.getItem('cpuOffsetLeft')
     
-} else {
-    clock.style.left = '200px';
-    clock.style.top = '650px';
-
-    dock.style.left = '930px';
-    dock.style.top = '900px';
 }
  
 // ----------END OF GLOBAL VARIABLES--------------
 
 
 // global functions
-
-class Draggable {
-
-    constructor(posX, posY, element, elementName) {
-        this.posX = posX;
-        this.posY = posY;
-
-        this.element = element;
-        this.elementName = elementName;
-
-        element.addEventListener('mousedown', this.mouseDownHandler);
-    } 
-
-    // to handle mouse down event to trigger clockging
-    mouseDownHandler = (event) => {
-
-        // finding x and y coordinates of the mouse down event
-        this.posX = event.clientX;
-        this.posY = event.clientY;
-
-        // adding event to the document
-        // these event listeners will be removed at the mouse up event
-        document.addEventListener('mousemove', this.mouseMoveHandler);
-        document.addEventListener('mouseup', this.mouseUpHandler);
-    }
-
-    // to handle dragging when mouse moves
-    mouseMoveHandler = (event) => {
-
-        // the distance mouse has been moved by
-        var changeX = event.clientX - this.posX;
-        var changeY = event.clientY - this.posY;
-
-        // new position of the element
-        this.element.style.left = (this.element.offsetLeft + changeX) + 'px';
-        this.element.style.top = (this.element.offsetTop + changeY) + 'px';
-
-        // set new mouse position
-        this.posX = event.clientX;
-        this.posY = event.clientY;
-
-        // saving data to local storage
-        localStorage.setItem(this.elementName+'PosX', this.PosX+'');
-        localStorage.setItem(this.elementName+'PosY', this.posY+'');
-
-        localStorage.setItem(this.elementName+'OffsetLeft', (this.element.offsetLeft + changeX) + 'px');
-        localStorage.setItem(this.elementName+'OffsetTop', (this.element.offsetTop + changeY) + 'px');
-    }
-
-    // to handle mouse up event to abort dragging and remove event listeners attached to the document
-    mouseUpHandler = () => {
-
-        document.removeEventListener('mousemove', this.mouseMoveHandler);
-        document.removeEventListener('mouseup', this.mouseUpHandler);
-    }
-} 
 
 // to format time into words
 const formatTime = (hours, minutes) => {
@@ -312,10 +216,9 @@ class dockApplication {
 // class to add behaviour to computer statistics
 class statistics {
     
-    constructor (type = '', elementId = '', factor = 100) {
+    constructor (type = '', elementId = '') {
         this.type = type;
         this.elementId = elementId;
-        this.factor = factor;
 
         if(this.type === 'cpu') {
             this.cpuUsage();
@@ -325,16 +228,15 @@ class statistics {
     }
 
     cpuUsage = () => {
-        os.cpu((usage) => {
-            document.getElementById(this.elementId+'').style.width = (usage*this.factor)+'px';
-        })
+        os.cpu( (usage) => document.getElementById(this.elementId+'').style.width = usage*100+'px' );  
 
         setTimeout(this.cpuUsage, 1000);
     }
 
     memoryUse = () => {
-        document.getElementById(this.elementId+'').style.width = (100 - (os.memory()*this.factor) )+ 'px';
-        setTimeout(this.memoryUse, 1000)
+        document.getElementById(this.elementId+'').style.width = ( 100 - os.ram() ) + 'px';
+
+        setTimeout(this.memoryUse, 1000);
     }
 }
 
@@ -412,10 +314,10 @@ class Menu {
 // actual code
 
 // making elements draggable
-const draggableClock = new Draggable(clockPosX, clockPosY, clock, 'clock');
-const draggableDock = new Draggable(dockPosX, dockPosY, dock, 'dock');
-const draggableCpu = new Draggable(cpuPosX, cpuPosY, cpuStat, 'cpu');
-const draggableMemory = new Draggable(memoryPosX, memoryPosY, memoryStat, 'memory')
+const draggableClock = element.draggable(clock, 'clock');
+const draggableDock = element.draggable(dock, 'dock');
+const draggableCpu = element.draggable(cpuStat, 'cpuStat');
+const draggableMemory = element.draggable(memoryStat, 'memoryStat');
 
 // adding behaviour to dock
 const blender = new dockApplication('blender-icon', 'blender');
@@ -426,8 +328,8 @@ const chrome = new dockApplication('chrome-icon', 'google-chrome');
 const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws error if console is used 
 
 // adding behaviour to computer statistics
-const memory = new statistics('memory', 'memory-line', 75);
-const cpu = new statistics('cpu', 'cpu-line', 75);
+const memory = new statistics('memory', 'memory-line');
+const cpu = new statistics('cpu', 'cpu-line');
 
 
 // adding behaviour to memory stat menu
@@ -436,7 +338,7 @@ Memorymenu.createMenu();
 document.getElementById('memory-remove').addEventListener('click', () => {
     document.getElementById('memory-stat').classList.add('hidden');
 
-    localStorage.setItem('memory', 'false')
+    disk.store('memory', 'false')
 });
 
 // adding behaviour to cpu stat menu
@@ -445,7 +347,7 @@ cpuMenu.createMenu();
 document.getElementById('cpu-remove').addEventListener('click', () => {
     document.getElementById('cpu-stat').classList.add('hidden');
 
-    localStorage.setItem('cpu', 'false');
+    disk.store('cpu', 'false');
 })
 
 // adding behaviour to dock menu
@@ -454,7 +356,7 @@ dockMenu.createMenu();
 document.getElementById('dock-remove').addEventListener('click', () => {
     document.getElementById('dock').classList.add('hidden');
 
-    localStorage.setItem('dock', 'false');
+    disk.store('dock', 'false');
 })
 
 // adding behaviour to clock menu
@@ -463,17 +365,17 @@ clockMenu.createMenu();
 document.getElementById('clock-remove').addEventListener('click', () => {
     document.getElementById('clock').classList.add('hidden');
 
-    localStorage.setItem('clock', 'false');
+    disk.store('clock', 'false');
 })
 
 // adding behaviour to document menu
 const documentMenu = new Menu('document', 'document-menu');
 documentMenu.documentMenu(['memory-stat-menu', 'cpu-stat-menu', 'dock-menu', 'clock-menu']);
 document.getElementById('show-removed').addEventListener('click', () => {
-    localStorage.setItem('memory', 'true');
-    localStorage.setItem('cpu', 'true');
-    localStorage.setItem('dock', 'true');
-    localStorage.setItem('clock', 'true');
+    disk.store('memory', 'true');
+    disk.store('cpu', 'true');
+    disk.store('dock', 'true');
+    disk.store('clock', 'true');
     document.getElementById('memory-stat').classList.remove('hidden');
     document.getElementById('cpu-stat').classList.remove('hidden');
     document.getElementById('dock').classList.remove('hidden');
