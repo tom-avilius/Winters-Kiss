@@ -205,9 +205,15 @@ const calenderInfo = () => {
 // class to add behaviour to dock icons: namely- to issue commands to open them
 class dockApplication {
     
-    constructor(elementId='', command='') {
+    constructor(elementId='', commandLin='', commandWin='') {
+
         document.getElementById(elementId+'').addEventListener('click', () => {
-            terminal.execute(command);
+            if (platform == 'win32') {
+
+                terminal.execute(commandWin+'');
+            }  else {
+                terminal.execute(command);
+            }
         });
     }
 }
@@ -320,12 +326,12 @@ const draggableCpu = element.draggable(cpuStat, 'cpuStat');
 const draggableMemory = element.draggable(memoryStat, 'memoryStat');
 
 // adding behaviour to dock
-const blender = new dockApplication('blender-icon', 'blender');
-const files = new dockApplication('files-icon', 'nautilus');
-const vscode = new dockApplication('vscode-icon', 'code');
-const settings = new dockApplication('settings-icon', 'gnome-control-center');
-const chrome = new dockApplication('chrome-icon', 'google-chrome');
-const consol = new dockApplication('console-icon', 'gnome-terminal'); //throws error if console is used 
+const blender = new dockApplication('blender-icon', 'blender', 'start blender');
+const files = new dockApplication('files-icon', 'nautilus', 'start .');
+const vscode = new dockApplication('vscode-icon', 'code', 'code');
+const settings = new dockApplication('settings-icon', 'gnome-control-center', 'start ms-settings:home');
+const chrome = new dockApplication('chrome-icon', 'google-chrome', 'start chrome');
+const consol = new dockApplication('console-icon', 'gnome-terminal', 'start'); //throws error if console is used 
 
 // adding behaviour to computer statistics
 const memory = new statistics('memory', 'memory-line');
