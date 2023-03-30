@@ -174,8 +174,10 @@ function startTime() {
     var minute = date.getMinutes();
     
     formatTime(hours, minute);
+    calenderInfo(date);
+    
 
-    setTimeout(startTime, 1000)
+    setTimeout(startTime, 1000);
     
 }
 
@@ -190,8 +192,7 @@ const formatCalenderInfo = (day, date, month, year) => {
 }
 
 // to measure calendar info such as date, day, month and year.
-const calenderInfo = () => {
-    var date = new Date();
+const calenderInfo = (date) => {
 
     var day = date.getDay();
     var today = date.getDate();
@@ -421,6 +422,4 @@ document.getElementById('show-removed').addEventListener('click', () => {
     document.getElementById('clock').classList.remove('hidden');
 })
 
-calenderInfo()
-
-startTime()
+startTime();
