@@ -226,6 +226,8 @@ class statistics {
         this.type = type;
         this.elementId = elementId;
 
+        this.element = document.getElementById(this.elementId+'');
+
         if(this.type === 'cpu') {
             this.cpuUsage();
         } else {
@@ -234,13 +236,44 @@ class statistics {
     }
 
     cpuUsage = () => {
-        os.cpu( (usage) => document.getElementById(this.elementId+'').style.width = usage*100+'px' );  
+
+        // getting the previous cpu usage to check if any change takes place
+        var previousCpuUsage = this.element.style.width;
+
+        previousCpuUsage = previousCpuUsage.replace('px', '');
+        previousCpuUsage = parseInt(previousCpuUsage);
+
+        
+        os.cpu( (usage) => {
+
+            usage = Math.trunc(usage*100)/100;
+
+            // changing the width if cpu usage changes changes
+            if ( usage != Math.trunc(previousCpuUsage) ) {
+
+                this.element.style.width = usage*100+'px';
+            }
+        } );  
 
         setTimeout(this.cpuUsage, 1000);
     }
 
     memoryUse = () => {
-        document.getElementById(this.elementId+'').style.width = ( 100 - os.ram() ) + 'px';
+
+        const freeRam = Math.trunc(100 - os.ram());
+
+        // previously free ram
+        var previousRam = this.element.style.width;
+        previousRam = previousRam.replace('px', '');
+        previousRam = parseInt(previousRam, 10);
+
+        // changing the width
+        if ( Math.trunc(previousRam) != freeRam ) {
+
+            this.element.style.width = ( 100 - freeRam ) + 'px';
+            // console.log(freeRam);
+            // console.log(previousRam)
+        }
 
         setTimeout(this.memoryUse, 1000);
     }
