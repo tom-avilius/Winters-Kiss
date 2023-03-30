@@ -42,9 +42,25 @@ ol li {
     padding-bottom: 1%;
 }
 
+table {
+
+    text-align: center;
+}
+
 th, td {
 
-    padding: 5px;
+    text-align: center;
+    padding: 8px;
+}
+
+td a {
+
+    text-decoration: none;
+}
+
+td a:hover {
+
+    opacity: 70%;
 }
 
 #about-div div p {
