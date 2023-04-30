@@ -6,9 +6,9 @@
 }
 
 body {
-    background-image: url("./pexels-lisa-fotios.jpg");
+    /* background-image: url("./pexels-lisa-fotios.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     height: 100vh;
 }
 
@@ -78,13 +78,19 @@ td a:hover {
 
 .background {
 
-    background-color: rgba(0, 0, 0, 0.3);
-    /* height: 100vh; */
-    min-height: 100vh;
+    background-image: url("./pexels-lisa-fotios.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 2%;
     max-height: max-content;
 
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
+}
+
+.background .filter {
+
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .color {
