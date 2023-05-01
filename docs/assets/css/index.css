@@ -81,7 +81,6 @@ td a:hover {
     background-image: url("./pexels-lisa-fotios.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    padding-bottom: 2%;
     max-height: max-content;
 
     font-family: 'Poppins', sans-serif;
@@ -90,7 +89,7 @@ td a:hover {
 
 .background .filter {
 
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .color {
@@ -136,12 +135,35 @@ td a:hover {
     color: black;
 }
 
+#docs-div {
+
+    background-color: wheat;
+}
+
 #docs-div h1 {
 
     padding-bottom: 2%;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 2.2rem;
     color: palevioletred;
+}
+
+#docs-div ol {
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: black;
+}
+
+#docs-div ol li {
+
+    color: black;
+}
+
+#docs-div ol li a {
+
+    color: #0F3460
 }
 
 .inline {
