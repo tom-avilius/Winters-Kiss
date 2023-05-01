@@ -210,12 +210,21 @@ td a:hover {
     font-size: 1rem;
 }
 
+#references-content a {
+
+    color: #3F3B6C;
+}
+
 #references-content ul, #references-content table, #references-content p {
 
     padding-bottom: 3%;
+    color: #3F3B6C;
+
+    font-size: 1.2rem;
 }
 
 #references-content ul li, #references-content table tr th, #references-content table tr td {
 
     padding-bottom: 0.5%;
+    color: #3F3B6C;
 }
