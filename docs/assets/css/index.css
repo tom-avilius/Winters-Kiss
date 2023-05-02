@@ -6,10 +6,12 @@
 }
 
 body {
-    /* background-image: url("./pexels-lisa-fotios.jpg");
+    background-image: url("./pexels-lisa-fotios.jpg");
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover;
     height: 100vh;
+    
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 span a {
@@ -78,18 +80,15 @@ td a:hover {
 
 .background {
 
-    background-image: url("./pexels-lisa-fotios.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image: url("./pexels-lisa-fotios.jpg");
+    background-repeat: no-repeat; */
+    /* background-size: cover;  */
+    background-color: rgba(0, 0, 0, 0.4);
+    min-height: 100vh;
     max-height: max-content;
 
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-}
-
-.background .filter {
-
-    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .color {
@@ -135,10 +134,6 @@ td a:hover {
     color: black;
 }
 
-#docs-div {
-
-    background-color: wheat;
-}
 
 #docs-div h1 {
 
@@ -153,17 +148,12 @@ td a:hover {
 
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-    color: black;
+    /* color: black; */
 }
 
 #docs-div ol li {
 
-    color: black;
-}
-
-#docs-div ol li a {
-
-    color: #0F3460
+    /* color: black; */
 }
 
 .inline {
@@ -210,15 +200,10 @@ td a:hover {
     font-size: 1rem;
 }
 
-#references-content a {
-
-    color: #3F3B6C;
-}
 
 #references-content ul, #references-content table, #references-content p {
 
     padding-bottom: 3%;
-    color: #3F3B6C;
 
     font-size: 1.2rem;
 }
@@ -226,5 +211,4 @@ td a:hover {
 #references-content ul li, #references-content table tr th, #references-content table tr td {
 
     padding-bottom: 0.5%;
-    color: #3F3B6C;
 }
