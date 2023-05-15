@@ -91,6 +91,12 @@ td a:hover {
     font-size: 1.2rem;
 }
 
+.break {
+
+    flex-basis: 100%;
+    height: 0;
+}
+
 .color {
 
     color: palevioletred;
@@ -148,7 +154,23 @@ td a:hover {
 
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-    /* color: black; */
+}
+
+#dropdown-arrow {
+
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    transition: none;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.hidden {
+
+    display: none;
 }
 
 .inline {
@@ -162,33 +184,30 @@ td a:hover {
     padding-bottom: 1.5%;
 
     background-color: rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar {
 
     margin-left: 2%;
-    display: inline-flex;
-    align-items: center;
-}
-
-.nav-list {
-
-    position: absolute;
-    width: 98%;
 }
 
 .nav-title {
 
-    display: contents;
-
     font-family: 'Sassy Frass', cursive;
     font-size: 5rem;
+
+    list-style-type: none;
+
+    display: inline;
 }
 
 .nav-item {
 
-    padding-right: 4%;
-    float: right;
+    padding-right: 32px;
 
     font-family: 'Montserrat', sans-serif;
 
@@ -206,4 +225,34 @@ td a:hover {
 #references-content ul li, #references-content table tr th, #references-content table tr td {
 
     padding-bottom: 0.5%;
+}
+
+@media screen and (max-width: 850px) {
+    
+    .navbar {
+
+        display: none;
+    }
+
+    #dropdown-arrow {
+
+        display: inline;
+    }
+
+    .content {
+
+        padding-top: 20%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .nav-title {
+        font-size: 4.5rem;
+    }
+
+    .content {
+
+        padding-top: 30% 
+    }
 }
