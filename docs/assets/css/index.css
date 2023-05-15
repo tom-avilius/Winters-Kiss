@@ -207,7 +207,7 @@ td a:hover {
 
 .nav-item {
 
-    padding-right: 32px;
+    padding-right: 60px;
 
     font-family: 'Montserrat', sans-serif;
 
@@ -228,15 +228,10 @@ td a:hover {
 }
 
 @media screen and (max-width: 850px) {
-    
-    .navbar {
 
-        display: none;
-    }
+    .navbar-div {
 
-    #dropdown-arrow {
-
-        display: inline;
+        flex-direction: column;
     }
 
     .content {
