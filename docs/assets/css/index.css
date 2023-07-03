@@ -108,6 +108,21 @@ td a:hover {
     padding-left: 4%;
 }
 
+#contact-div h1 {
+
+    padding-top: 3%;
+    padding-bottom: 2%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    color: white;
+}
+
+#contact-div ul {
+
+    padding-left: 5px;
+}
+
 .download-btn {
 
     margin-top: 4%;
